@@ -2,7 +2,7 @@
  * Paths are relative to the site root. `todo: true` marks pages that are placeholders.
  */
 window.GVX_NAV = {
-  // TODO(decision): GNB 4개 확정 여부 — 기획서에는 Patterns · Develop · Updates 안이 있었음.
+  // GNB: 4개 메뉴로 확정 (와이어프레임 기준)
   gnb: [
     { id: "getting-started", label: "Getting Started", href: "getting-started/" },
     { id: "foundations", label: "Foundations", href: "foundations/color/" },
@@ -10,6 +10,18 @@ window.GVX_NAV = {
     { id: "resources", label: "Resources", href: "resources/" }
   ],
   sidebar: {
+    "getting-started": [
+      { items: [
+        { id: "designer", label: "Designer", href: "getting-started/" },
+        { id: "terms", label: "Terms of use", href: "getting-started/terms/", todo: true }
+      ] },
+      { label: "Platform", items: [
+        { id: "flutter", label: "Flutter", href: "getting-started/#platform-flutter" },
+        { id: "android", label: "Android", href: "getting-started/#platform-android" },
+        { id: "ios", label: "iOS", href: "getting-started/#platform-ios" },
+        { id: "web", label: "Web", href: "getting-started/#platform-web" }
+      ] }
+    ],
     foundations: [
       { items: [{ id: "overview", label: "Overview", href: "foundations/", todo: true }] },
       {

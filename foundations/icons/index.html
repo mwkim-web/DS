@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Icons · GolfVX DS</title>
+<link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=JetBrains+Mono&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>try{var t=localStorage.getItem("gvx-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<style>
+  .ico { display: flex; flex-wrap: wrap; gap: 16px; color: var(--label-normal); }
+  .ico svg { width: 24px; height: 24px; }
+  .card .row { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
+  .card .row b { font-size: 14px; font-weight: 500; color: var(--label-strong); }
+  .src { font-size: 12px; color: var(--label-assistive); margin-top: 16px; }
+</style>
+</head>
+<body data-section="foundations" data-page="icons">
+<div id="gvx-gnb"></div>
+<div class="layout">
+<div id="gvx-sidebar"></div>
+<main class="main" id="main">
+  <div id="gvx-crumb"></div>
+  <header class="page-head">
+    <h1 class="page-title">Icons</h1>
+    <p class="page-desc">GolfVX DS의 아이콘은 Lucide 기반 24×24 벡터 아이콘입니다. Navigation · Chevron · Action · Utility 그룹으로 구성되며 Figma 라이브러리에서 바로 사용할 수 있습니다.</p>
+  </header>
+  <section class="section">
+    <h2 id="size">Size</h2>
+    <p class="desc">모든 아이콘은 24×24 viewBox 단일 크기로 제공됩니다.</p>
+    <div class="card"><div class="ico" data-set="outline-1"></div><div class="row"><b>24 × 24</b><span class="tag">단일 크기</span></div><p>모든 아이콘 공통</p></div>
+  </section>
+  <section class="section">
+    <h2 id="style">Style</h2>
+    <p class="desc">기본은 Outline이며, 선택 상태가 있는 Navigation 아이콘은 Filled를 함께 제공합니다 (선택 = Filled, 기본 = Outline).</p>
+    <div class="cards c2">
+      <div class="card"><div class="ico" data-set="outline"></div><div class="row"><b>Outline</b><span class="tag">기본</span></div></div>
+      <div class="card"><div class="ico" data-set="filled"></div><div class="row"><b>Filled</b><span class="tag">선택 상태 (Navigation)</span></div></div>
+    </div>
+  </section>
+  <section class="section">
+    <h2 id="library">Library</h2>
+    <p class="desc">Figma 라이브러리에서 Design System - Icon으로 접근할 수 있습니다.</p>
+    <div class="card"><p style="color:var(--label-strong);font-size:14px">Assets 패널 → Design System - Icon → 원하는 아이콘 드래그</p>
+      <div class="ico" data-set="all" style="margin-top:16px"></div>
+      <p class="src">출처: Lucide Icons (ISC License) — 앱 오픈소스 라이선스 목록에 Lucide 표기 필요</p></div>
+  </section>
+</main>
+<div id="gvx-toc"></div>
+</div>
+<div id="gvx-footer"></div>
+<script src="../../assets/js/nav.js"></script>
+<script>
+(function () {
+  // Lucide icon paths (ISC). Navigation set has Outline + Filled pairs in the DS.
+  var P = {
+    home: '<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',
+    calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+    user: '<circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 0 0-16 0"/>',
+    bell: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
+    search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+    left: '<path d="m15 18-6-6 6-6"/>', right: '<path d="m9 18 6-6-6-6"/>',
+    plus: '<path d="M5 12h14M12 5v14"/>', check: '<path d="M20 6 9 17l-5-5"/>', x: '<path d="M18 6 6 18M6 6l12 12"/>'
+  };
+  function svg(name, filled) {
+    return '<svg viewBox="0 0 24 24" fill="' + (filled ? "currentColor" : "none") + '" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="' + name + '">' + P[name] + "</svg>";
+  }
+  var sets = {
+    "outline-1": [["home"], ["calendar"], ["user"]],
+    outline: [["home"], ["calendar"], ["user"], ["bell"], ["search"], ["check"]],
+    filled: [["home", 1], ["calendar", 1], ["user", 1]],
+    all: Object.keys(P).map(function (k) { return [k]; })
+  };
+  document.querySelectorAll(".ico[data-set]").forEach(function (el) {
+    el.innerHTML = sets[el.dataset.set].map(function (i) { return svg(i[0], i[1]); }).join("");
+  });
+})();
+</script>
+<script src="../../assets/js/layout.js"></script>
+</body>
+</html>

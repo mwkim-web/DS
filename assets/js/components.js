@@ -158,4 +158,193 @@ window.GVX_COMPONENTS = {
     ],
     todo: "DS 컴포넌트 설명은 4탭(Home/Book/Competition/Me)이지만 variant는 Report 포함 5탭 — 탭 구성 확인 필요"
   }
+  ,switch: {
+    title: "Switch",
+    desc: "사용자가 설정을 켜거나 끌 수 있는 토글 컴포넌트입니다.",
+    flutter: "CommonSwitch (utils_ui/widgets/common/common_switch.dart)",
+    preview: function () {
+      return '<div class="pv-inline">' + [["On", "on"], ["Off", "off"]].map(function (s) {
+        return '<div class="pv-item"><span class="gvx-switch ' + s[1] + '" role="switch" aria-checked="' + (s[1] === "on") + '"><i></i></span><span class="pv-cap">' + s[0] + "</span></div>";
+      }).join("") + "</div>";
+    },
+    anatomy: [
+      ["Track", "44×28 · radius/inf · inset 4 (DS 노드 기준)"],
+      ["Thumb", "20×20 원형 · Off = 좌측, On = 우측 정렬"]
+    ],
+    props: [["State", "Off · On"]],
+    tokens: [
+      ["On", "primary/normal (트랙) · fill/normal (노브)"],
+      ["Off", "fill/disable (트랙) · fill/normal (노브)"]
+    ],
+    guidelines: [
+      "즉시 반영되는 설정의 켜기/끄기에 사용합니다.",
+      "Disabled variant는 DS에 정의되어 있지 않습니다."
+    ],
+    todo: "DS 설명은 44×26 · inset 3 이지만 컴포넌트 노드는 44×28 · padding 4 — 실제 사양 확인 필요"
+  },
+
+  textfield: {
+    title: "TextField",
+    desc: "텍스트 입력을 위한 컴포넌트입니다.",
+    flutter: "CommonTextField (utils_ui/widgets/common/common_text_field.dart)",
+    preview: function () {
+      var f = function (state, style, val, ph, helper) {
+        return '<div class="gvx-field ' + style + " " + state + '"><label>Email <b>*</b></label><div class="box"><span class="' + (ph ? "ph" : "val") + '">' + val + "</span></div>" +
+          (helper ? '<small>' + helper + "</small>" : "") + "</div>";
+      };
+      return '<div class="pv-fields">' +
+        '<div><p class="pv-cap">Outlined · Default</p>' + f("default", "outlined", "you@example.com", true) + "</div>" +
+        '<div><p class="pv-cap">Outlined · Focus</p>' + f("focus", "outlined", "you@example.com") + "</div>" +
+        '<div><p class="pv-cap">Outlined · Error</p>' + f("error", "outlined", "you@example", false, "올바른 이메일 형식이 아닙니다.") + "</div>" +
+        '<div><p class="pv-cap">Outlined · Disabled</p>' + f("disabled", "outlined", "you@example.com", true) + "</div>" +
+        '<div><p class="pv-cap">Filled · Default</p>' + f("default", "filled", "you@example.com", true) + "</div>" +
+        "</div>";
+    },
+    anatomy: [
+      ["Label", "Body/B4/Medium · Required(*) 선택"],
+      ["Box", "높이 56 · radius/l (8) · 좌우 padding 16 · Filled = fill/elevated, Outlined = line/normal 테두리"],
+      ["Value / Placeholder", "Body/B2/Medium"],
+      ["Trailing (선택)", "24×24 — Send Code · Verified · Counter 등"],
+      ["Helper", "Body/B5/Regular · Error 시 status/negative"]
+    ],
+    props: [
+      ["Style", "Filled · Outlined"],
+      ["State", "Default · Focus · Error · Disabled"],
+      ["Has label / Label / Required", "Boolean / Text / Boolean"],
+      ["Helper", "Text"],
+      ["Has trailing / Trailing", "Boolean / Instance swap"],
+      ["관련 컴포넌트", "TextField / Multiline (342×132, 상단 정렬)"]
+    ],
+    tokens: [
+      ["Default", "line/normal · label/assistive (placeholder)"],
+      ["Focus", "line/focus (divider/thick 1.5) · label/normal"],
+      ["Error", "line/error (1.5) · label/normal · status/negative (helper)"],
+      ["Disabled", "fill/normal · line/normal · label/disable"],
+      ["Filled 스타일", "fill/elevated (필드 배경)"],
+      ["Label · Helper", "label/secondary"]
+    ],
+    guidelines: [
+      "Focus · Error 상태의 테두리는 divider/thick (1.5px)을 사용합니다.",
+      "자유 서술(대회 설명 등)은 TextField / Multiline을 사용합니다.",
+      "에러 메시지는 Helper 위치에 status/negative로 표시합니다."
+    ],
+    todo: "Error helper 문구는 예시"
+  },
+
+  dropdown: {
+    title: "Dropdown",
+    desc: "목록에서 하나의 옵션을 선택하는 컴포넌트입니다.",
+    flutter: "CommonDropdown (utils_ui/widgets/common/common_dropdown.dart)",
+    preview: function () {
+      var items = [["Option 1", 1], ["Option 2", 0], ["Option 3", 0], ["Option 4", 0]];
+      var chev = '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+      var check = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+      return '<div class="pv-stack" style="align-items:flex-start"><span class="gvx-dd-trigger">Arlington Heights ' + chev + '</span><div class="gvx-dd-panel">' +
+        items.map(function (i) { return '<div class="gvx-dd-item' + (i[1] ? " on" : "") + '"><span>' + i[0] + "</span>" + (i[1] ? check : "<i></i>") + "</div>"; }).join("") + "</div></div>";
+    },
+    anatomy: [
+      ["Trigger", "compact pill · 높이 34 · radius/inf · Body/B5/Bold + chevron 12"],
+      ["Panel", "너비 220 · radius/xl (16) · padding-block 8 · Shadow/Popup · line/normal 테두리"],
+      ["Item", "높이 44 · padding 12 · 16 · Body/B3 — Selected는 Bold + check 16"]
+    ],
+    props: [["구성", "Trigger · Panel · Item"], ["Item / State", "Default · Selected"], ["Item / Label", "Text"]],
+    tokens: [
+      ["Trigger", "fill/normal · line/normal · label/normal"],
+      ["Panel", "fill/normal · line/normal · Shadow/Popup"],
+      ["Item (Default)", "label/secondary"],
+      ["Item (Selected)", "label/normal (텍스트 · 체크)"]
+    ],
+    guidelines: [
+      "단일 선택에 사용합니다. 예: Home Plans 매장 선택.",
+      "폼 필드형 트리거(radius 8, full-width)는 별도 패턴입니다."
+    ]
+  },
+
+  checkbox: {
+    title: "Checkbox",
+    desc: "약관 동의 등 항목의 선택 여부를 표시하는 컴포넌트입니다.",
+    flutter: null,
+    preview: function () {
+      var off = '<svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
+      var on = '<svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="var(--t-fill-normal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      return '<div class="pv-inline"><div class="pv-item"><span class="gvx-check off">' + off + '</span><span class="pv-cap">Off</span></div><div class="pv-item"><span class="gvx-check on">' + on + '</span><span class="pv-cap">On</span></div></div>';
+    },
+    anatomy: [["Indicator", "24×24 원형 — Off = 테두리, On = 채운 원 + 흰 체크"]],
+    props: [["State", "Off · On"], ["용도", "약관 동의 (Agreement / Row와 함께 사용)"]],
+    tokens: [["On", "label/normal (원) · fill/normal (체크)"], ["Off", "label/assistive"]],
+    guidelines: [
+      "DS 컴포넌트 이름은 Agreement / Checkbox — 약관 동의 행에서 사용합니다.",
+      "amber 배경은 흰 체크와 대비가 약해 사용하지 않습니다."
+    ],
+    todo: "DS 설명은 Off = line/strong 테두리이나 변수 바인딩은 label/assistive — 확인 필요"
+  },
+
+  appbar: {
+    title: "AppBar",
+    desc: "화면 상단 내비게이션 바 컴포넌트입니다.",
+    flutter: "CommonAppBar (utils_ui/widgets/common/common_app_bar.dart)",
+    preview: function () {
+      var back = '<span class="back"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></span>';
+      return '<div class="pv-stack" style="align-items:flex-start"><p class="pv-cap">Show back = True</p><div class="gvx-appbar back-on">' + back + '<b>SIGN UP</b></div>' +
+        '<p class="pv-cap">Show back = False</p><div class="gvx-appbar"><b>HOME</b></div></div>';
+    },
+    anatomy: [
+      ["Container", "높이 52 · 좌 padding 12 (Back 노출) / 20 (미노출) · 우 20"],
+      ["Back (선택)", "36×36 슬롯 · Chevron / Left 24 · 타이틀과 간격 8"],
+      ["Title", "Body/B3/Bold_uppercase · 좌측 정렬"]
+    ],
+    props: [["Show back", "True · False"], ["Title", "Text"]],
+    tokens: [["배경", "fill/normal"], ["타이틀", "label/normal"], ["아이콘", "label/normal"]],
+    tokensCol: "Element",
+    guidelines: [
+      "Show back = True는 하위 화면, False는 탭 진입 화면에 사용합니다.",
+      "타이틀은 좌측 정렬, 대문자로 표시합니다."
+    ],
+    todo: "AppBar / Home(홈 전용 AppBar)은 별도 컴포넌트 — 문서화 범위 확인 필요"
+  },
+
+  tabbar: {
+    title: "TabBar",
+    desc: "콘텐츠 카테고리 전환을 위한 탭 컴포넌트입니다. 3-way / 4-way 제공.",
+    flutter: "CommonTabBar<T> (utils_ui)",
+    preview: function () {
+      var bar = function (labels) { return '<div class="gvx-tabbar">' + labels.map(function (l, i) { return '<span class="' + (i === 0 ? "on" : "") + '">' + l + "</span>"; }).join("") + "</div>"; };
+      return '<div class="pv-stack" style="align-items:stretch;width:342px;max-width:100%"><p class="pv-cap">3-way</p>' + bar(["Overall", "Front", "Back"]) +
+        '<p class="pv-cap">4-way</p>' + bar(["All", "Upcoming", "Ongoing", "Closed"]) + "</div>";
+    },
+    anatomy: [
+      ["Item", "높이 44 · padding 12 · 16 · Body/B4/Bold_uppercase · 같은 폭(FILL)"],
+      ["Indicator", "하단 2px — Active = 인디케이터, Inactive = 회색 track"]
+    ],
+    props: [["Active (3-way)", "First · Second · Third"], ["Active (4-way)", "First · Second · Third · Fourth"], ["Item / State", "Active · Inactive"], ["Item / Label", "Text"]],
+    tokens: [
+      ["Active", "label/normal · primary/normal (인디케이터)"],
+      ["Inactive", "label/alternative · line/normal (하단 선)"]
+    ],
+    guidelines: [
+      "Item을 가로로 flush 조립해 끊김 없는 레일 위에 활성 구간만 표시합니다.",
+      "가변 개수는 Item을 직접 조립하고, 3 · 4개는 N-way 컴포넌트를 사용합니다."
+    ],
+    todo: "DS 설명은 인디케이터 #3A3A3C(진한 회색)이나 변수 바인딩은 primary/normal — 확인 필요"
+  },
+
+  segmented: {
+    title: "Segmented",
+    desc: "여러 옵션 중 하나를 선택하는 세그먼트 컨트롤 컴포넌트입니다.",
+    flutter: null,
+    preview: function () {
+      var seg = function (labels, on) { return '<div class="gvx-seg">' + labels.map(function (l, i) { return '<span class="' + (i === on ? "on" : "") + '">' + l + "</span>"; }).join("") + "</div>"; };
+      return '<div class="pv-stack"><p class="pv-cap">2-way</p>' + seg(["Stroke", "Match"], 0) + '<p class="pv-cap">3-way</p>' + seg(["Scramble", "Foursome", "Fourball"], 1) + "</div>";
+    },
+    anatomy: [
+      ["Container", "2-way 240×44 / 3-way 342×44 · radius/l (8) · padding 4"],
+      ["Cell", "높이 36 · radius 8 · Active = 흰 채움 + Bold, Inactive = 투명 + Medium (Body/B4)"]
+    ],
+    props: [["Active (2-way)", "First · Second"], ["Active (3-way)", "First · Second · Third"], ["Cell / State", "Active · Inactive"], ["Cell / Label", "Text"]],
+    tokens: [["Container", "fill/elevated"], ["Selected", "fill/normal · label/normal"], ["Unselected", "label/secondary"]],
+    guidelines: [
+      "Entry format · Scoring · Visibility 등 2~3지 선택 폼에 사용합니다.",
+      "radio-card 형태로 대체하지 않으며, 셀에는 그림자를 쓰지 않습니다."
+    ]
+  }
 };

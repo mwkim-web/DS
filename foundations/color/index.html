@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colors · GolfVX DS</title>
+<link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=JetBrains+Mono&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>try{var t=localStorage.getItem("gvx-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body data-section="foundations" data-page="color">
+<div id="gvx-gnb"></div>
+<div class="layout">
+<div id="gvx-sidebar"></div>
+<main class="main" id="main">
+  <div id="gvx-crumb"></div>
+  <header class="page-head">
+    <h1 class="page-title">Colors</h1>
+    <p class="page-desc">GolfVX DS의 컬러는 역할 기반의 Semantic 토큰과 원천 팔레트인 Atomic 컬러로 구성됩니다.<br>화면에서는 Semantic 토큰만 사용하며, Atomic 컬러는 직접 참조하지 않습니다.</p>
+  </header>
+
+  <div class="tabs" role="tablist" id="color-tabs">
+    <button class="tab" role="tab" aria-selected="true" aria-controls="panel-semantic" data-value="semantic">Semantic</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="panel-atomic" data-value="atomic">Atomic</button>
+  </div>
+
+  <div role="tabpanel" id="panel-semantic"></div>
+  <div role="tabpanel" id="panel-atomic" hidden></div>
+</main>
+<div id="gvx-toc"></div>
+</div>
+<div id="gvx-footer"></div>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/tokens.js"></script>
+<script>
+(function () {
+  var T = window.GVX_TOKENS;
+  var slug = function (s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, "-"); };
+
+  /* Semantic */
+  var total = T.semantic.reduce(function (n, g) { return n + g.tokens.length; }, 0);
+  var sem = document.getElementById("panel-semantic");
+  var html = '<p class="page-desc" style="margin:-24px 0 40px">' + T.semantic.length + "개 그룹 · 총 " + total + "개 토큰</p>";
+  T.semantic.forEach(function (g) {
+    var rows = g.tokens.map(function (t) {
+      var light = T.resolve(t[1]);
+      var cls = "sw", inner = "";
+      if (T.isTransparent(light)) { cls += " checker"; inner = '<i style="background:' + light + '"></i>'; }
+      else if (T.isWhite(light)) cls += " white";
+      var style = T.isTransparent(light) ? "" : ' style="background:' + light + '"';
+      return '<div class="tok-row"><div class="' + cls + '"' + style + ' title="' + t[1] + " · " + light + '">' + inner + "</div>" +
+        '<span class="tk mono" style="font-size:12px;color:var(--label-strong)">' + t[0] + "</span>" +
+        '<span class="alias">' + t[1] + "</span>" + '<span class="alias">' + t[2] + "</span></div>";
+    }).join("");
+    html += '<section class="section"><h2 id="sem-' + slug(g.group) + '" data-toc="' + g.group + '">' + g.group +
+      '<span class="count">' + g.tokens.length + "</span></h2>" + '<p class="desc">' + g.desc + "</p>" +
+      '<div class="table"><div class="tok-row th"><span></span><span>Token</span><span>Light</span><span>Dark</span></div>' + rows + "</div></section>";
+  });
+  sem.innerHTML = html;
+
+  /* Atomic */
+  var atom = document.getElementById("panel-atomic");
+  var ah = '<section class="section"><h2 id="atomic-palette" data-toc="Palette">Palette</h2>' +
+    '<p class="desc">Grey · Amber · Green · Blue · Purple · Red, 각 9단계 (10 = 어두움 → 90 = 밝음). 브랜드 컬러는 amber/60 입니다.</p>';
+  T.palettes.forEach(function (p) {
+    ah += '<div class="palette"><span class="name">' + p.charAt(0).toUpperCase() + p.slice(1) + "</span>";
+    for (var s = 10; s <= 90; s += 10) {
+      var hex = T.atomic[p + "/" + s];
+      ah += '<div class="chip"><div class="c' + (T.isWhite(hex) ? " white" : "") + '" style="background:' + hex + '"></div>' +
+        '<span class="n">' + s + (p === "amber" && s === 60 ? " · Brand" : "") + '</span><span class="h">' + hex + "</span></div>";
+    }
+    ah += "</div>";
+  });
+  ah += "</section>";
+  atom.innerHTML = ah;
+})();
+</script>
+<script src="../../assets/js/layout.js"></script>
+</body>
+</html>

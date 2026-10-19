@@ -31,7 +31,7 @@
   <div id="gvx-crumb"></div>
   <header class="page-head" style="margin-bottom:40px">
     <h1 class="page-title">Typography</h1>
-    <p class="page-desc">GolfVX DS의 타이포그래피는 Display · Heading · Body · Caption 4개 그룹, 16단계 스케일로 구성됩니다.<br>Latin은 Inter를 번들로 포함하고, 한국어 · 일본어 · 중국어는 각 플랫폼의 시스템 폰트를 사용합니다.</p>
+    <p class="page-desc">GolfVX DS의 타이포그래피는 Display · Heading · Body · Caption 4개 그룹, 16단계 스케일로 구성됩니다.<br>Latin은 Inter, 한국어는 Spoqa Han Sans Neo를 번들로 포함하고, 일본어 · 중국어는 각 플랫폼의 시스템 폰트를 사용합니다.</p>
   </header>
 
   <div class="tabs" role="tablist" id="lang-tabs">
@@ -47,8 +47,7 @@
       <p class="desc">언어별로 사용하는 폰트와 제공 방식입니다.</p>
       <div class="cards c4">
         <div class="card font-card"><div class="glyph" style="font-family:Inter">Aa</div><div class="fam">Inter</div><div class="lang">Latin (EN / ES / VI)</div><span class="tag">번들 포함</span></div>
-        <!-- TODO: KR font policy — Spoqa Han Sans Neo 번들 vs 시스템 폰트(Apple SD Gothic Neo / Noto Sans CJK KR) 결정 대기. 문구는 와이어프레임 그대로 유지. -->
-        <div class="card font-card"><div class="glyph">가</div><div class="fam">Spoqa Han Sans Neo</div><div class="lang">Korean</div><div class="note">iOS: Apple SD Gothic Neo<br>Android: Noto Sans CJK KR</div><span class="tag">번들 포함</span></div>
+        <div class="card font-card"><div class="glyph" style="font-family:'Spoqa Han Sans Neo'">가</div><div class="fam">Spoqa Han Sans Neo</div><div class="lang">Korean</div><div class="note">iOS · Android 공통<br>앱에 번들로 포함</div><span class="tag">번들 포함</span></div>
         <div class="card font-card"><div class="glyph" style="font-family:'Noto Sans JP'">あ</div><div class="fam">Noto Sans JP</div><div class="lang">Japanese</div><span class="tag ghost">시스템 폰트</span></div>
         <div class="card font-card"><div class="glyph" style="font-family:'Noto Sans SC'">中</div><div class="fam">Noto Sans SC</div><div class="lang">Chinese</div><span class="tag ghost">시스템 폰트</span></div>
       </div>
@@ -77,8 +76,7 @@
   var T = window.GVX_TOKENS;
   var LANG = {
     latin: { font: "Inter, sans-serif", sample: "GolfVX Design System" },
-    // TODO: KR font policy — 결정 전까지 시스템 한글 폰트 스택으로 미리보기
-    korean: { font: "'Apple SD Gothic Neo', 'Noto Sans KR', 'Spoqa Han Sans Neo', sans-serif", sample: "골프VX 디자인 시스템" },
+    korean: { font: "'Spoqa Han Sans Neo', sans-serif", sample: "골프VX 디자인 시스템" },
     japanese: { font: "'Noto Sans JP', sans-serif", sample: "ゴルフVX デザインシステム" },
     chinese: { font: "'Noto Sans SC', sans-serif", sample: "GolfVX 设计系统" }
   };

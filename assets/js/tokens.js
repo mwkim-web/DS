@@ -96,13 +96,21 @@ window.GVX_TOKENS = (function () {
     ["Shadow/BottomSheet", { x: 0, y: -4, blur: 20, color: "rgba(0, 0, 0, 0.15)" }, "바텀시트 (위쪽으로 드리움)"]
   ];
 
+  // Grid — from showcase wireframe WF-05 (node 146:1001). Not a Figma variable collection.
+  var grid = [
+    ["Mobile", "360px~", 4, 16, 16],
+    ["Tablet", "768px~", 8, 24, 24],
+    ["Desktop", "1280px~", 12, 24, 40],
+    ["Wide", "1440px~", 12, 24, 80]
+  ];
+
   function resolve(alias) { return atomic[alias] || null; }
   function isTransparent(v) { return /^rgba\(/.test(v || ""); }
   function isWhite(v) { return (v || "").toUpperCase() === "#FFFFFF"; }
 
   return {
     atomic: atomic, palettes: palettes, semantic: semantic, typeScale: typeScale,
-    spacing: spacing, radius: radius, divider: divider, shadow: shadow,
+    grid: grid, spacing: spacing, radius: radius, divider: divider, shadow: shadow,
     resolve: resolve, isTransparent: isTransparent, isWhite: isWhite
   };
 })();

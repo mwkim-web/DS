@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spacing · GolfVX DS</title>
+<link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=JetBrains+Mono&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>try{var t=localStorage.getItem("gvx-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<style>
+  .sp-row { grid-template-columns: 160px 120px minmax(0, 1fr); }
+  .bar { height: 8px; background: var(--label-strong); border-radius: 2px; }
+  .ex { font-size: 11px; color: var(--label-assistive); margin-left: 6px; }
+</style>
+</head>
+<body data-section="foundations" data-page="spacing">
+<div id="gvx-gnb"></div>
+<div class="layout">
+<div id="gvx-sidebar"></div>
+<main class="main" id="main">
+  <div id="gvx-crumb"></div>
+  <header class="page-head">
+    <h1 class="page-title">Spacing</h1>
+    <p class="page-desc">GolfVX DS의 스페이싱은 4의 배수를 기본으로, 짝수 예외값 2와 14를 포함합니다. 토큰 이름은 px 값을 그대로 사용합니다 (spacing/16 = 16px).</p>
+  </header>
+  <section class="section">
+    <h2 id="scale">Scale <span class="count" id="sp-count"></span></h2>
+    <p class="desc">4의 배수 기본 + 짝수 예외(2, 14).</p>
+    <div class="table" id="sp"></div>
+  </section>
+  <section class="section">
+    <h2 id="usage">Usage</h2>
+    <p class="desc">스페이싱 토큰 사용 기준입니다.</p>
+    <div class="cards c3">
+      <div class="card"><h3>Component 내부</h3><p>컴포넌트 내부 패딩에는 spacing/8~spacing/24 사용</p></div>
+      <div class="card"><h3>Section 간격</h3><p>섹션 간 여백에는 spacing/32~spacing/64 사용</p></div>
+      <div class="card"><h3>Page 여백</h3><p>페이지 좌우 여백에는 spacing/80 이상 사용</p></div>
+    </div>
+  </section>
+</main>
+<div id="gvx-toc"></div>
+</div>
+<div id="gvx-footer"></div>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/tokens.js"></script>
+<script>
+(function () {
+  var S = window.GVX_TOKENS.spacing;
+  document.getElementById("sp-count").textContent = S.length;
+  document.getElementById("sp").innerHTML =
+    '<div class="tr th sp-row"><span>Token</span><span>Value</span><span>Visual</span></div>' +
+    S.map(function (v) {
+      var ex = (v === 2 || v === 14) ? '<span class="ex">예외</span>' : "";
+      return '<div class="tr sp-row"><span class="tk">spacing/' + v + '</span><span class="v">' + v + "px" + ex + '</span><span><div class="bar" style="width:' + v + 'px"></div></span></div>';
+    }).join("");
+})();
+</script>
+<script src="../../assets/js/layout.js"></script>
+</body>
+</html>

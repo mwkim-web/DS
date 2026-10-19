@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Divider · GolfVX DS</title>
+<link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=JetBrains+Mono&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>try{var t=localStorage.getItem("gvx-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<style>
+  .canvas { background: var(--bg); border-radius: 6px; padding: 16px; margin: 16px 0; display: flex; flex-direction: column; gap: 12px; font-size: 12px; color: var(--label-assistive); }
+  .canvas.v { flex-direction: row; align-items: center; }
+  .hl { background: var(--line); width: 100%; }
+  .vl { background: var(--line); width: 1px; height: 16px; }
+  .dv-row { grid-template-columns: 180px 120px minmax(0, 1fr); }
+  .tok-use { grid-template-columns: 160px minmax(0, 1fr); }
+</style>
+</head>
+<body data-section="foundations" data-page="divider">
+<div id="gvx-gnb"></div>
+<div class="layout">
+<div id="gvx-sidebar"></div>
+<main class="main" id="main">
+  <div id="gvx-crumb"></div>
+  <header class="page-head">
+    <h1 class="page-title">Divider</h1>
+    <p class="page-desc">콘텐츠 영역을 구분하는 선입니다. 두께는 divider 토큰, 색상은 line 토큰을 사용합니다.</p>
+  </header>
+  <section class="section">
+    <h2 id="type">Type</h2>
+    <p class="desc">Divider는 두께와 방향으로 구분됩니다.</p>
+    <div class="cards c2">
+      <div class="card"><h3>Thin (1px)</h3><div class="canvas">콘텐츠 A<div class="hl" style="height:1px"></div>콘텐츠 B</div><p>기본 구분선. 리스트, 섹션 간 구분에 사용 · divider/thin</p></div>
+      <div class="card"><h3>Thick (1.5px)</h3><div class="canvas">콘텐츠 A<div class="hl" style="height:1.5px;background:var(--line-strong)"></div>콘텐츠 B</div><p>강조 구분선. 주요 섹션 구분에 사용 · divider/thick (2px는 divider/thicker)</p></div>
+      <div class="card"><h3>Horizontal</h3><div class="canvas">콘텐츠 A<div class="hl" style="height:1px"></div>콘텐츠 B</div><p>기본 방향</p></div>
+      <div class="card"><h3>Vertical</h3><div class="canvas v">항목 A<span class="vl"></span>항목 B<span class="vl"></span>항목 C</div><p>인라인 구분에 사용</p></div>
+    </div>
+  </section>
+  <section class="section">
+    <h2 id="thickness">Thickness <span class="count" id="dv-count"></span></h2>
+    <p class="desc">Layout 컬렉션의 divider 토큰입니다.</p>
+    <div class="table" id="dv"></div>
+  </section>
+  <section class="section">
+    <h2 id="tokens" data-toc="적용 토큰">적용 토큰</h2>
+    <p class="desc">두께는 divider 토큰, 색상은 line 토큰을 사용합니다.</p>
+    <div class="table">
+      <div class="tr th tok-use"><span>Type</span><span>Token</span></div>
+      <div class="tr tok-use"><span class="k">Thin</span><span class="m">divider/thin (1px) · line/normal</span></div>
+      <div class="tr tok-use"><span class="k">Thick</span><span class="m">divider/thick (1.5px) · line/strong</span></div>
+      <div class="tr tok-use"><span class="k">Disabled</span><span class="m">line/disable</span></div>
+    </div>
+  </section>
+</main>
+<div id="gvx-toc"></div>
+</div>
+<div id="gvx-footer"></div>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/tokens.js"></script>
+<script>
+(function () {
+  var D = window.GVX_TOKENS.divider;
+  document.getElementById("dv-count").textContent = D.length;
+  document.getElementById("dv").innerHTML = '<div class="tr th dv-row"><span>Token</span><span>Value</span><span>Visual</span></div>' +
+    D.map(function (d) {
+      return '<div class="tr dv-row"><span class="tk">' + d[0] + '</span><span class="v">' + d[1] + 'px</span><span><div class="hl" style="height:' + d[1] + 'px;max-width:240px;background:var(--line-strong)"></div></span></div>';
+    }).join("");
+})();
+</script>
+<script src="../../assets/js/layout.js"></script>
+</body>
+</html>

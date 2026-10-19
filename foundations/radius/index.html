@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radius · GolfVX DS</title>
+<link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=JetBrains+Mono&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>try{var t=localStorage.getItem("gvx-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<style>
+  .rd-row { grid-template-columns: 160px 160px minmax(0, 1fr); min-height: 64px; }
+  .rd-box { width: 120px; height: 48px; background: var(--checker); }
+  .use-row { grid-template-columns: 260px minmax(0, 1fr); }
+</style>
+</head>
+<body data-section="foundations" data-page="radius">
+<div id="gvx-gnb"></div>
+<div class="layout">
+<div id="gvx-sidebar"></div>
+<main class="main" id="main">
+  <div id="gvx-crumb"></div>
+  <header class="page-head">
+    <h1 class="page-title">Radius</h1>
+    <p class="page-desc">GolfVX DS의 모서리 반경 시스템입니다. 컴포넌트 유형에 따라 일관된 radius를 적용합니다.</p>
+  </header>
+  <section class="section">
+    <h2 id="scale">Scale <span class="count" id="rd-count"></span></h2>
+    <p class="desc">GolfVX DS에서 사용하는 radius 토큰입니다 (Layout 컬렉션).</p>
+    <div class="table" id="rd"></div>
+  </section>
+  <section class="section">
+    <h2 id="usage">Usage</h2>
+    <p class="desc">디자인시스템 컴포넌트에 실제 적용된 radius입니다.</p>
+    <div class="table">
+      <div class="tr th use-row"><span>Component</span><span>Radius</span></div>
+      <div class="tr use-row"><span class="k">Button (Default · Small)</span><span class="m">radius/inf (999px)</span></div>
+      <div class="tr use-row"><span class="k">Switch</span><span class="m">radius/inf (999px)</span></div>
+      <div class="tr use-row"><span class="k">Dropdown Trigger</span><span class="m">radius/inf (999px)</span></div>
+      <div class="tr use-row"><span class="k">Filter Chip · Option Chip</span><span class="m">radius/inf (999px)</span></div>
+      <div class="tr use-row"><span class="k">Grade Badge · Status Pill</span><span class="m">radius/inf (999px)</span></div>
+      <div class="tr use-row"><span class="k">Dialog</span><span class="m">radius/xxl (20px)</span></div>
+      <div class="tr use-row"><span class="k">BottomSheet</span><span class="m">radius/xxl (20px, 상단만)</span></div>
+      <div class="tr use-row"><span class="k">Card (Round · Booking · Reservation · Summary)</span><span class="m">radius/xl (16px)</span></div>
+      <div class="tr use-row"><span class="k">Dropdown Panel</span><span class="m">radius/xl (16px)</span></div>
+      <div class="tr use-row"><span class="k">TextField</span><span class="m">radius/l (8px)</span></div>
+      <div class="tr use-row"><span class="k">Snackbar · Segmented</span><span class="m">radius/l (8px)</span></div>
+      <div class="tr use-row"><span class="k">Chip (Type) · Score Cell</span><span class="m">radius/s (4px)</span></div>
+    </div>
+  </section>
+</main>
+<div id="gvx-toc"></div>
+</div>
+<div id="gvx-footer"></div>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/tokens.js"></script>
+<script>
+(function () {
+  var R = window.GVX_TOKENS.radius;
+  document.getElementById("rd-count").textContent = R.length;
+  document.getElementById("rd").innerHTML = '<div class="tr th rd-row"><span>Token</span><span>Value</span><span>Visual</span></div>' +
+    R.map(function (r) {
+      return '<div class="tr rd-row"><span class="tk">' + r[0] + '</span><span class="v">' + r[1] + "px" + (r[1] === 999 ? " (pill)" : "") +
+        '</span><span><div class="rd-box" style="border-radius:' + Math.min(r[1], 24) + 'px"></div></span></div>';
+    }).join("");
+})();
+</script>
+<script src="../../assets/js/layout.js"></script>
+</body>
+</html>

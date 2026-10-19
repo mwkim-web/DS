@@ -125,6 +125,9 @@
   .pv-fields { grid-template-columns: minmax(0, 1fr); }
 }
 
+/* Badge (Grade) */
+.gvx-grade { display: inline-flex; align-items: center; gap: 4px; height: 24px; padding: 4px 8px; border-radius: 999px; color: var(--t-label-inverse-secondary); font-family: Inter, var(--font); font-size: 11px; font-weight: 700; line-height: 16px; }
+
 @media (max-width: 768px) {
   .pv-row { grid-template-columns: 80px repeat(3, auto); gap: 12px; }
   .pv-row .gvx-btn { padding: 0 12px; }

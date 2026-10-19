@@ -18,7 +18,11 @@ window.GVX_TOKENS = (function () {
     "purple/10": "#35194A", "purple/20": "#522768", "purple/30": "#70358D", "purple/40": "#8D43B2", "purple/50": "#A464C4",
     "purple/60": "#B885D1", "purple/70": "#CBA6DD", "purple/80": "#E4D1EE", "purple/90": "#F5EEF8",
     "red/10": "#470D07", "red/20": "#84170B", "red/30": "#B31F0F", "red/40": "#E22712", "red/50": "#EF4B39",
-    "red/60": "#F27263", "red/70": "#F6988E", "red/80": "#FAC7C1", "red/90": "#FDEDEA"
+    "red/60": "#F27263", "red/70": "#F6988E", "red/80": "#FAC7C1", "red/90": "#FDEDEA",
+    "gradient/welcome-start": "#7A3E1D", "gradient/welcome-end": "#B8713A",
+    "gradient/silver-start": "#546E7A", "gradient/silver-end": "#7E9EAA",
+    "gradient/gold-start": "#E89400", "gradient/gold-end": "#FFCB05",
+    "gradient/platinum-start": "#7C3FC8", "gradient/platinum-end": "#B06EF0"
   };
   // black/opacity/5..95, white/opacity/5..95
   for (var p = 5; p <= 95; p += 5) {

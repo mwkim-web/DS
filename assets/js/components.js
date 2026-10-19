@@ -347,4 +347,42 @@ window.GVX_COMPONENTS = {
       "radio-card 형태로 대체하지 않으며, 셀에는 그림자를 쓰지 않습니다."
     ]
   }
+  ,badge: {
+    title: "Badge",
+    desc: "멤버십 등급(Bronze · Silver · Gold · Platinum)을 표시하는 뱃지 컴포넌트입니다. 상태 톤 표시는 Status Pill · Chip을 사용합니다.",
+    flutter: "CommonGradeBadge (gradient.*Start)",
+    preview: function () {
+      var A = window.GVX_TOKENS.atomic;
+      var shapes = {
+        triangle: '<path d="M5.5 1 10.5 10H.5z"/>', square: '<rect x="1" y="1" width="9" height="9" rx="1"/>',
+        pentagon: '<path d="M5.5.6 10.4 4.2 8.5 10H2.5L.6 4.2z"/>', hexagon: '<path d="M5.5.5 10 3v5l-4.5 2.5L1 8V3z"/>'
+      };
+      var g = [["BRONZE", "welcome", "triangle"], ["SILVER", "silver", "square"], ["GOLD", "gold", "pentagon"], ["PLATINUM", "platinum", "hexagon"]];
+      return '<div class="pv-inline">' + g.map(function (x) {
+        return '<div class="pv-item"><span class="gvx-grade" style="background:' + A["gradient/" + x[1] + "-start"] + '"><svg viewBox="0 0 11 11" width="11" height="11" fill="currentColor">' + shapes[x[2]] + "</svg>" + x[0] +
+          '</span><span class="pv-cap">gradient/' + x[1] + "-start</span></div>";
+      }).join("") + "</div>";
+    },
+    anatomy: [
+      ["Container", "compact pill · 높이 24 · radius/inf · padding 8 · 4 · Flat 단색 면"],
+      ["Shape icon", "11×11 — Bronze 삼각형 · Silver 사각형 · Gold 오각형 · Platinum 육각형"],
+      ["Label", "Caption/C1/Bold · 대문자"]
+    ],
+    props: [["Grade", "Bronze · Silver · Gold · Platinum"]],
+    tokens: [
+      ["텍스트 · 아이콘", "label/inverse_secondary"],
+      ["Bronze", "gradient/welcome-start (#7A3E1D)"],
+      ["Silver", "gradient/silver-start (#546E7A)"],
+      ["Gold", "gradient/gold-start (#E89400)"],
+      ["Platinum", "gradient/platinum-start (#7C3FC8)"],
+      ["카드류 (참고)", "gradient/{welcome · silver · gold · platinum}-start → end"]
+    ],
+    tokensCol: "Element",
+    guidelines: [
+      "뱃지는 Flat 단색(gradient/*-start)을 사용합니다. start → end 그라디언트는 등급 카드류에만 유지합니다.",
+      "Atomic gradient 토큰을 직접 바인딩하는 예외 케이스입니다 (semantic_colors §1.3).",
+      "사용처: Home Identity · Me · QR 시트.",
+      "상태(성공 · 오류 · 주의 등) 표시는 Status Pill, 분류 태그는 Chip을 사용합니다."
+    ]
+  }
 };

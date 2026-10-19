@@ -93,11 +93,11 @@
     var tabs = list.querySelectorAll('[role="tab"]');
     tabs.forEach(function (tab) {
       tab.addEventListener("click", function () {
+        var target = tab.getAttribute("aria-controls");
         tabs.forEach(function (t) {
-          var on = t === tab;
-          t.setAttribute("aria-selected", on ? "true" : "false");
+          t.setAttribute("aria-selected", t === tab ? "true" : "false");
           var p = document.getElementById(t.getAttribute("aria-controls"));
-          if (p) p.hidden = !on;
+          if (p) p.hidden = p.id !== target;
         });
         document.dispatchEvent(new CustomEvent("gvx:tab", { detail: { tablist: list.id, tab: tab.dataset.value } }));
         buildToc();

@@ -1,0 +1,81 @@
+/* GolfVX DS Showcase — component previews. Colors come from var(--t-*) (see component-page.js). */
+.flutter { font-size: 12px; color: var(--label-assistive); margin: 12px 0 0; }
+.flutter code { font-size: 11.5px; }
+.preview { background: var(--bg-elevated); border: 1px solid var(--line); border-radius: 12px; padding: 40px 24px; display: flex; justify-content: center; overflow-x: auto; }
+.kv { grid-template-columns: 200px minmax(0, 1fr); }
+.anatomy { margin: 0; padding: 0; list-style: none; counter-reset: a; border: 1px solid var(--line); border-radius: 8px; }
+.anatomy li { counter-increment: a; display: grid; grid-template-columns: 32px 160px minmax(0, 1fr); gap: 12px; align-items: center; padding: 14px 20px; border-bottom: 1px solid var(--line); font-size: 13px; }
+.anatomy li:last-child { border-bottom: 0; }
+.anatomy li::before { content: counter(a); width: 22px; height: 22px; border-radius: 999px; background: var(--label-strong); color: var(--bg); font-size: 11px; display: grid; place-items: center; }
+.anatomy b { font-weight: 500; color: var(--label-strong); }
+.anatomy span { color: var(--label-secondary); }
+.guide { margin: 0; padding-left: 18px; color: var(--label-secondary); }
+.guide li { margin: 6px 0; }
+
+.pv-grid { display: grid; gap: 16px; }
+.pv-row { display: grid; grid-template-columns: 100px repeat(3, 140px); gap: 24px; align-items: center; justify-items: start; }
+.pv-head { font-size: 11px; color: var(--label-assistive); text-transform: uppercase; }
+.pv-label, .pv-cap { font-size: 12px; color: var(--label-secondary); }
+.pv-inline { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; justify-content: center; }
+.pv-stack { display: flex; flex-direction: column; gap: 28px; align-items: center; }
+.pv-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+
+/* Button */
+.gvx-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 48px; padding: 0 20px; border-radius: 999px; font-family: Inter, var(--font); font-size: 15px; font-weight: 700; text-transform: uppercase; cursor: default; }
+.gvx-btn.sm { height: 36px; font-size: 13px; }
+.gvx-btn.secondary:not(.sm) { height: 40px; }
+.gvx-btn.primary { background: var(--t-primary-normal); color: var(--t-label-normal-on-primary); }
+.gvx-btn.secondary { background: var(--t-fill-inverse); color: var(--t-label-inverse-secondary); }
+.gvx-btn.outlined { background: var(--t-fill-normal); color: var(--t-label-normal); box-shadow: inset 0 0 0 1px var(--t-line-strong); }
+.gvx-btn.destructive { background: var(--t-status-negative); color: var(--t-label-inverse-secondary); }
+.gvx-btn:disabled { background: var(--t-fill-disable); color: var(--t-label-disable); }
+.gvx-btn.outlined:disabled { background: var(--t-fill-normal); box-shadow: inset 0 0 0 1px var(--t-line-disable); }
+
+/* Status Pill */
+.gvx-pill { display: inline-flex; align-items: center; height: 24px; padding: 4px 8px; border-radius: 999px; font-family: Inter, var(--font); font-size: 11px; font-weight: 700; line-height: 16px; }
+.gvx-pill.positive { background: var(--t-status-positive-subtle); color: var(--t-status-positive); }
+.gvx-pill.negative { background: var(--t-status-negative-subtle); color: var(--t-status-negative); }
+.gvx-pill.info { background: var(--t-status-info-subtle); color: var(--t-status-info); }
+.gvx-pill.cautionary { background: var(--t-status-cautionary-subtle); color: var(--t-status-cautionary); }
+.gvx-pill.neutral { background: var(--t-fill-disable); color: var(--t-label-secondary); }
+
+/* Scorecard */
+.gvx-cell { position: relative; width: 32px; height: 24px; display: grid; place-items: center; font-family: Inter, var(--font); font-size: 10.5px; font-weight: 700; }
+.gvx-cell i { position: absolute; width: 18px; height: 18px; left: 7px; top: 3px; }
+.gvx-cell b { position: relative; font-weight: 700; }
+.gvx-cell.eagle i { border-radius: 999px; background: var(--t-scorecard-fill-eagle); }
+.gvx-cell.eagle b { color: var(--t-scorecard-label-eagle); }
+.gvx-cell.birdie i { border-radius: 999px; box-shadow: inset 0 0 0 1px var(--t-scorecard-line-birdie); }
+.gvx-cell.birdie b { color: var(--t-scorecard-label-birdie); }
+.gvx-cell.par i { display: none; }
+.gvx-cell.par b { color: var(--t-scorecard-label-par); }
+.gvx-cell.bogey i { border-radius: 2px; box-shadow: inset 0 0 0 1px var(--t-scorecard-line-bogey); }
+.gvx-cell.bogey b { color: var(--t-scorecard-label-bogey); }
+.gvx-cell.double i { border-radius: 2px; background: var(--t-scorecard-fill-double); }
+.gvx-cell.double b { color: var(--t-scorecard-label-double); }
+.gvx-rating { width: 22px; height: 22px; border-radius: 999px; display: grid; place-items: center; font-family: Inter, var(--font); font-size: 10.5px; font-weight: 700; color: var(--t-label-inverse-secondary); }
+.gvx-rating.r-s { background: var(--t-rating-fill-s); }
+.gvx-rating.r-a { background: var(--t-rating-fill-a); }
+.gvx-rating.r-b { background: var(--t-rating-fill-b); }
+.gvx-rating.r-c { background: var(--t-rating-fill-c); }
+.gvx-match { font-family: Inter, var(--font); font-size: 12px; font-weight: 700; }
+.gvx-match.up { color: var(--t-scorecard-label-match-up); }
+.gvx-match.down { color: var(--t-scorecard-label-match-down); }
+.gvx-match.as { color: var(--t-scorecard-label-match-allsquared); }
+
+/* Bottom Navigation */
+.gvx-bnav { width: 390px; max-width: 100%; display: flex; padding: 12px 8px 32px; background: var(--t-fill-normal); box-shadow: inset 0 1px 0 var(--t-line-disable); }
+.gvx-tab { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 4px 0 2px; color: var(--t-label-disable); }
+.gvx-tab svg { width: 24px; height: 24px; }
+.gvx-tab em { font-style: normal; font-family: Inter, var(--font); font-size: 11px; line-height: 16px; font-weight: 500; }
+.gvx-tab.on svg { color: var(--t-primary-normal); }
+.gvx-tab.on em { color: var(--t-label-normal); font-weight: 700; }
+
+@media (max-width: 768px) {
+  .pv-row { grid-template-columns: 80px repeat(3, auto); gap: 12px; }
+  .pv-row .gvx-btn { padding: 0 12px; }
+  .kv { grid-template-columns: 120px minmax(0, 1fr); }
+  .anatomy li { grid-template-columns: 24px minmax(0, 1fr); }
+  .anatomy li span { grid-column: 2; }
+  .preview { padding: 24px 12px; justify-content: flex-start; }
+}

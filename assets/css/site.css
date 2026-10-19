@@ -17,6 +17,8 @@
   --primary: #FFCD00;         /* primary/normal */
   --on-primary: #4C4C4C;      /* label/normal_on_primary */
   --checker: #E0E0E0;
+  --on-inverse-sub: #ADADAD;  /* label/assistive on fill/inverse (both modes) */
+  --on-inverse-line: #DDDDDD; /* line/normal on fill/inverse (both modes) */
   --swatch-border: #E0E0E0;
   --shadow-popup: 0 0 20px rgba(0, 0, 0, .15);
   --shadow-sheet: 0 -4px 20px rgba(0, 0, 0, .15);

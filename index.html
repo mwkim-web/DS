@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GolfVX Design System</title>
+<link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=JetBrains+Mono&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>try{var t=localStorage.getItem("gvx-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<style>
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .home-sec { padding: 96px 0; border-top: 1px solid var(--line); }
+  .home-sec h2 { font-size: 32px; font-weight: 400; color: var(--label-strong); margin: 0 0 8px; line-height: 1.3; }
+  .home-sec .sub { color: var(--label-assistive); margin: 0 0 48px; }
+
+  /* Hero — fill/inverse, label/inverse */
+  .hero { background: var(--fill-inverse); color: var(--label-inverse); min-height: 560px; display: grid; place-items: center; text-align: center; padding: 96px 20px; position: relative; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; inset: -20%; background: radial-gradient(ellipse at 50% 60%, rgba(255,255,255,.08), transparent 60%); }
+  .hero-in { position: relative; }
+  .hero h1 { font-family: Inter, var(--font); font-size: clamp(36px, 6vw, 64px); font-weight: 700; line-height: 1.1; margin: 0 0 20px; letter-spacing: -.02em; color: var(--label-inverse); }
+  .hero p { color: var(--on-inverse-sub); margin: 0 0 40px; }
+  .ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; height: 44px; padding: 0 24px; border-radius: 999px; font-size: 14px; font-weight: 500; }
+  .btn.primary { background: var(--primary); color: var(--on-primary); }
+  .btn.outline { border: 1px solid var(--on-inverse-line); color: var(--label-inverse); }
+
+  /* Marquee */
+  .marquee { padding: 32px 0; overflow: hidden; display: flex; flex-direction: column; gap: 16px; }
+  .track { display: flex; gap: 16px; width: max-content; animation: slide 60s linear infinite; }
+  .track.rev { animation-direction: reverse; }
+  .marquee:hover .track { animation-play-state: paused; }
+  @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .track { animation: none; } }
+  .mcard { width: 240px; height: 160px; flex: none; background: var(--bg-elevated); border-top: 3px solid var(--primary); border-radius: 4px; display: flex; flex-direction: column; justify-content: flex-end; padding: 12px 16px; position: relative; }
+  .mcard::before { content: ""; position: absolute; inset: 16px 16px 40px; background: linear-gradient(to top right, transparent calc(50% - .5px), var(--line) 50%, transparent calc(50% + .5px)), linear-gradient(to top left, transparent calc(50% - .5px), var(--line) 50%, transparent calc(50% + .5px)); }
+  .mcard span { font-size: 13px; color: var(--label-assistive); position: relative; }
+
+  /* Resources list */
+  .res-list { border-top: 1px solid var(--line); }
+  .res-item { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+  .res-item .l { display: flex; align-items: center; gap: 20px; }
+  .res-item .ib { width: 48px; height: 48px; border-radius: 8px; background: var(--bg-elevated); flex: none; }
+  .res-item b { display: block; font-weight: 500; color: var(--label-strong); font-size: 15px; }
+  .res-item small { color: var(--label-assistive); font-size: 12px; }
+  .res-item .arr { color: var(--label-assistive); font-size: 18px; }
+  a.res-item:hover b { text-decoration: underline; }
+
+  /* Behind the system */
+  .thumb { aspect-ratio: 16 / 10; background: var(--bg-elevated); border-radius: 10px; display: grid; place-items: center; margin-bottom: 16px; }
+  .thumb i { width: 64px; height: 64px; background: var(--line); border-radius: 4px; }
+  .article b { display: block; color: var(--label-strong); font-weight: 500; margin-bottom: 4px; }
+  .article small { color: var(--label-assistive); font-size: 12px; }
+
+  /* FAQ */
+  .faq { border-top: 1px solid var(--line); }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; padding: 22px 0; color: var(--label-strong); font-size: 15px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; color: var(--label-assistive); }
+  .faq details[open] summary::after { content: "—"; }
+  .faq .ans { padding: 0 0 22px; color: var(--label-secondary); }
+  @media (max-width: 768px) { .home-sec { padding: 64px 0; } .mcard { width: 180px; height: 120px; } }
+</style>
+</head>
+<body data-section="" data-page="home">
+<div id="gvx-gnb"></div>
+
+<section class="hero" aria-label="Hero">
+  <!-- TODO: Hero 배경 영상/이미지 에셋 (WF-01 Video 레이어) -->
+  <div class="hero-in">
+    <h1>One System,<br>Every Experience</h1>
+    <p>컴포넌트부터 인터랙션까지, 하나의 시스템으로.</p>
+    <div class="ctas">
+      <a class="btn primary" href="getting-started/">Getting Started</a>
+      <!-- TODO: Figma 라이브러리 URL 확정 필요 -->
+      <a class="btn outline" href="resources/">Figma Library</a>
+    </div>
+  </div>
+</section>
+
+<section class="marquee" aria-label="GolfVX DS 적용 화면">
+  <!-- TODO: 카드 썸네일 이미지 (현재 더미 카드 유지) -->
+  <div class="track" id="row1"></div>
+  <div class="track rev" id="row2"></div>
+</section>
+
+<section class="home-sec">
+  <div class="container">
+    <h2>Start Your GolfVX DS</h2>
+    <p class="sub">디자인 리소스와 개발 문서를 활용하세요.</p>
+    <div class="res-list">
+      <!-- TODO: Figma UI Kit 링크 확정 필요 -->
+      <a class="res-item" href="resources/"><span class="l"><span class="ib"></span><span><b>GolfVX Design System UI KIT for Figma</b><small>Last Updated. 2026.08.28</small></span></span><span class="arr">→</span></a>
+      <a class="res-item" href="tools/token-migration/"><span class="l"><span class="ib"></span><span><b>Token Migration Guide — Semantic v4 매핑 문서</b><small>Last Updated. 2026.08.28</small></span></span><span class="arr">→</span></a>
+      <!-- TODO: Developer JSON Map 다운로드 파일 연결 필요 -->
+      <a class="res-item" href="resources/"><span class="l"><span class="ib"></span><span><b>Developer JSON Map — 구버전 → 신버전 토큰 맵</b><small>Last Updated. 2026.08.28</small></span></span><span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="home-sec">
+  <div class="container">
+    <h2 style="margin-bottom:48px">Behind the System</h2>
+    <!-- TODO: 아티클 썸네일 이미지와 링크 -->
+    <div class="cards c3">
+      <div class="article"><div class="thumb"><i></i></div><b>GolfVX 디자인 시스템 구축기를 소개해요.</b><small>by GolfVX Design System Team</small></div>
+      <div class="article"><div class="thumb"><i></i></div><b>Semantic — 역할 기반 토큰 설계를 소개해요.</b><small>by GolfVX Design System Team</small></div>
+      <div class="article"><div class="thumb"><i></i></div><b>다국어 Typography 전략을 소개해요.</b><small>by GolfVX Design System Team</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="home-sec">
+  <div class="container">
+    <h2 style="margin-bottom:48px">FAQ</h2>
+    <!-- TODO: FAQ 답변 문구 — 와이어프레임에 질문만 있음 -->
+    <div class="faq" id="faq"></div>
+  </div>
+</section>
+
+<div id="gvx-footer"></div>
+<script src="assets/js/nav.js"></script>
+<script>
+(function () {
+  // WF-01 Marquee labels (Row 1 / Row 2)
+  var rows = [
+    ["Home", "Booking", "Score Card", "Membership", "Competition", "QR", "Report", "Leaderboard", "My Page"],
+    ["Foundation", "Atomic Color", "Typography", "Spacing", "Components", "Interaction", "Dark Mode", "Light Mode", "Multilingual"]
+  ];
+  function cards(list) { return list.map(function (l) { return '<div class="mcard"><span>' + l + "</span></div>"; }).join(""); }
+  // duplicated once so the -50% loop is seamless
+  document.getElementById("row1").innerHTML = cards(rows[0]) + cards(rows[0]);
+  document.getElementById("row2").innerHTML = cards(rows[1]) + cards(rows[1]);
+  document.querySelectorAll(".track").forEach(function (t, i) { Array.prototype.slice.call(t.children, rows[i].length).forEach(function (c) { c.setAttribute("aria-hidden", "true"); }); });
+
+  var faq = ["GolfVX DS는 어떤 서비스에 적용되나요?", "Figma 변수는 어떻게 사용하나요?", "다크모드는 지원하나요?", "다국어 지원 범위는 어떻게 되나요?", "피드백이나 기여는 어떻게 하나요?"];
+  document.getElementById("faq").innerHTML = faq.map(function (q) {
+    return "<details><summary>" + q + '</summary><div class="ans">답변 준비 중입니다.</div></details>';
+  }).join("");
+})();
+</script>
+<script src="assets/js/layout.js"></script>
+</body>
+</html>

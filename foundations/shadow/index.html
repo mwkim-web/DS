@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shadow · GolfVX DS</title>
+<link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=JetBrains+Mono&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>try{var t=localStorage.getItem("gvx-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<style>
+  .sh-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; padding: 32px; }
+  .sh-area { height: 80px; display: grid; place-items: center; }
+  .sh-box { width: 40px; height: 40px; border-radius: 6px; background: #FFFFFF; }
+  .sh-spec { font-family: var(--mono); font-size: 11px; color: var(--label-assistive); }
+  .use-row { grid-template-columns: 200px minmax(0, 1fr); }
+</style>
+</head>
+<body data-section="foundations" data-page="shadow">
+<div id="gvx-gnb"></div>
+<div class="layout">
+<div id="gvx-sidebar"></div>
+<main class="main" id="main">
+  <div id="gvx-crumb"></div>
+  <header class="page-head">
+    <h1 class="page-title">Shadow</h1>
+    <p class="page-desc">요소의 깊이감과 계층을 표현하는 그림자 시스템입니다.</p>
+  </header>
+  <section class="section">
+    <h2 id="scale">Scale</h2>
+    <p class="desc">GolfVX DS의 그림자 레벨입니다. 디자인시스템 Effect Style 2종을 사용합니다.</p>
+    <div class="cards c3" id="sh"></div>
+  </section>
+  <section class="section">
+    <h2 id="usage">Usage</h2>
+    <p class="desc">디자인시스템 컴포넌트에 실제 적용된 그림자입니다.</p>
+    <div class="table">
+      <div class="tr th use-row"><span>Component</span><span>Shadow</span></div>
+      <div class="tr use-row"><span class="k">Dropdown Panel</span><span class="m">Shadow/Popup</span></div>
+      <div class="tr use-row"><span class="k">Dialog</span><span class="m">Shadow/Popup</span></div>
+      <div class="tr use-row"><span class="k">BottomSheet</span><span class="m">Shadow/BottomSheet</span></div>
+      <div class="tr use-row"><span class="k">TextField (Focus)</span><span class="m">없음 — line/focus 테두리로 표현</span></div>
+      <div class="tr use-row"><span class="k">Snackbar</span><span class="m">없음 — fill/inverse 배경으로 구분</span></div>
+    </div>
+  </section>
+</main>
+<div id="gvx-toc"></div>
+</div>
+<div id="gvx-footer"></div>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/tokens.js"></script>
+<script>
+(function () {
+  document.getElementById("sh").innerHTML = window.GVX_TOKENS.shadow.map(function (s) {
+    var e = s[1];
+    var css = e ? "box-shadow:" + e.x + "px " + e.y + "px " + e.blur + "px " + e.color : "box-shadow:inset 0 0 0 1px var(--checker)";
+    var spec = e ? e.x + " " + e.y + " " + e.blur + " · #000 15%" : "—";
+    return '<div class="card sh-card"><div class="sh-area"><div class="sh-box" style="' + css + '"></div></div><h3>' + s[0] +
+      '</h3><div class="sh-spec">' + spec + "</div><p>" + s[2] + "</p></div>";
+  }).join("");
+})();
+</script>
+<script src="../../assets/js/layout.js"></script>
+</body>
+</html>
